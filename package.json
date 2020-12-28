@@ -1,0 +1,31 @@
+{
+  "name": "mlg-converter",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "MLG log files converter",
+  "author": "Piotr Rogowski <piotr.rogowski0@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karniv00l/mlg-converter"
+  },
+  "keywords": [
+    "mlg",
+    "mlvlg",
+    "efi-analytics",
+    "tunerstudio",
+    "megalogviewer"
+  ],
+  "files": [
+    "index.js",
+    "src/*.js"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
