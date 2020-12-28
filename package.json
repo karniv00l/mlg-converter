@@ -20,7 +20,7 @@
     "src/*.js"
   ],
   "scripts": {
-    "lint": "eslint ."
+    "test": "eslint ."
   },
   "dependencies": {},
   "devDependencies": {
