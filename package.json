@@ -9,18 +9,26 @@
     "url": "https://github.com/karniv00l/mlg-converter"
   },
   "keywords": [
-    "mlg",
-    "mlvlg",
     "efi-analytics",
     "tunerstudio",
-    "megalogviewer"
+    "megalogviewer",
+    "mlg",
+    "mlvlg",
+    "virtual-dyno",
+    "csv",
+    "megasquirt",
+    "parsing",
+    "speeduino",
+    "cli",
+    "json"
   ],
   "files": [
     "index.js",
     "src/*.js"
   ],
   "scripts": {
-    "test": "eslint ."
+    "lint": "eslint .",
+    "test": "node test/test.js"
   },
   "dependencies": {},
   "devDependencies": {

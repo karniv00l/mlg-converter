@@ -10,7 +10,8 @@ Or just can be used as a Node library producing JS `plain object`.
 
 ## Caveats
 
-`MLVLG` also carries data type called `Marker`s (graphical marks used for indicating specific events). They **will be stripped** in `.csv` files.
+- `MLVLG` also carries data type called `Marker`s (graphical marks used for indicating specific events). They **will be stripped** in `.csv` files.
+- Provided binaries are pretty heavy (~70MB), so you are better off using Node.js if it's available (no dependencies required).
 
 ## Using provided binaries (Linux, MacOS, Windows)
 
@@ -22,6 +23,9 @@ mlgconv --format=csv,msl,json log1.mlg
 
 # single format, multiple files
 mlgconv --format=msl log1.mlg log2.mlg log3.mlg
+
+# using Node.js
+node mlgconv.js --format=csv,msl,json log1.mlg
 ```
 
 ## Using Docker 🐳
@@ -40,7 +44,7 @@ npm install --save mlg-converter
 const fs = require('fs');
 const { Parser } = require('mlg-converter');
 
-const result = new Parser(fs.readFileSync('my-log.mlg')).parse();
+const result = new Parser(fs.readFileSync('./test/data/short.mlg')).parse();
 
 console.dir(result, { maxArrayLength: 1 }); // =>
 
@@ -145,5 +149,5 @@ console.dir(result, { maxArrayLength: 1 }); // =>
 
 ```bash
 npm install
-npm run lint
+npm test
 ```
