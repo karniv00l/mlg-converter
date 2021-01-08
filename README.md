@@ -1,5 +1,11 @@
 # Binary MLG (MLVLG) log files converter
 
+
+[![buddy pipeline](https://app.buddy.works/qikio/mlg-converter/pipelines/pipeline/300742/badge.svg?token=1e8e92037033a0164df2af9937643930bfd09a5fb47c744e90b21be190804156 "buddy pipeline")](https://app.buddy.works/qikio/mlg-converter/pipelines/pipeline/300742)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b778eac2cf95b273680b/maintainability)](https://codeclimate.com/github/karniv00l/mlg-converter/maintainability)
+[![Minimum Node.js Version](https://img.shields.io/badge/node-%3E%3D%2011.0.0-brightgreen)](https://nodejs.org/)
+![License](https://img.shields.io/github/license/karniv00l/mlg-converter)
+
 Simple tool for parsing and converting `EFI Analytics (TunerStudio, MegaLogViewer)` binary log files (`.mlg`) to a human readable formats like:
 
 - `.csv` - semicolon (`;`) separated (`Virtual Dyno`, spreadsheets, etc.)
