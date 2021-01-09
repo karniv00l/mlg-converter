@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-console */
 
 const fs = require('fs');
 const path = require('path');
-const { Parser, Formatter } = require('.');
+const { Parser, Formatter } = require('./dist/index');
 
 const args = process.argv.slice(2);
 

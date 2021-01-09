@@ -1,5 +1,16 @@
-class Formatter {
-  constructor(input) {
+import { Result } from './types';
+
+export class Formatter {
+  CSV_SEPARATOR: string;
+  MSL_SEPARATOR: string;
+  LINE_SEPARATOR: string;
+  RECORD_TYPE_FIELD: string;
+  RECORD_TYPE_MARKER: string;
+  FIELD_DISPLAY_STYLE_FLOAT: string;
+  input: Result;
+  rows: string[];
+
+  constructor(input: Result) {
     this.CSV_SEPARATOR = ';';
     this.MSL_SEPARATOR = '\t';
     this.LINE_SEPARATOR = '\n';
@@ -11,22 +22,22 @@ class Formatter {
     this.rows = [];
   }
 
-  raw() {
+  public raw(): Result {
     return this.input;
   }
 
-  toJSON() {
+  public toJSON(): string {
     return JSON.stringify(this.input);
   }
 
-  toCSV() {
+  public toCSV(): string {
     this.pushHeader(this.CSV_SEPARATOR, true);
     this.pushRecords(this.CSV_SEPARATOR, true);
 
     return this.joinRows();
   }
 
-  toMSL() {
+  public toMSL(): string {
     this.input.info.split('\n')
       .forEach((line) => this.rows.push(Formatter.escape(line)));
 
@@ -36,15 +47,15 @@ class Formatter {
     return this.joinRows();
   }
 
-  joinRows() {
+  private joinRows() {
     return this.rows.join(this.LINE_SEPARATOR);
   }
 
-  pushRow(list, separator) {
+  private pushRow(list: (string | number)[], separator: string) {
     this.rows.push(list.join(separator));
   }
 
-  pushHeader(separator, escape) {
+  private pushHeader(separator: string, escape = false) {
     this.pushRow(
       this.input.fields.map((field) => (
         escape ? Formatter.escape(field.name) : field.name
@@ -59,9 +70,9 @@ class Formatter {
     );
   }
 
-  pushRecords(separator, stripMarkers) {
+  private pushRecords(separator: string, stripMarkers = false) {
     this.input.records.forEach((record) => {
-      const formatted = [];
+      const formatted: string[] = [];
 
       if (stripMarkers && record.type === this.RECORD_TYPE_MARKER) {
         return;
@@ -75,7 +86,7 @@ class Formatter {
 
       this.input.fields.forEach((field) => {
         const rawValue = record[field.name];
-        const value = (rawValue + field.transform) * field.scale;
+        const value = ((rawValue as number) + field.transform) * field.scale;
         const withStyle = field.displayStyle === this.FIELD_DISPLAY_STYLE_FLOAT
           ? value.toFixed(field.digits) : `${value}`;
 
@@ -86,11 +97,11 @@ class Formatter {
     });
   }
 
-  static escape(value) {
+  private static escape(value: number | string) {
     return `"${value}"`;
   }
 
-  static formats() {
+  private static formats() {
     return [
       'csv',
       'msl',
@@ -98,5 +109,3 @@ class Formatter {
     ];
   }
 }
-
-module.exports = Formatter;

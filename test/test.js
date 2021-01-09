@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const Parser = require('../src/parser');
-const Formatter = require('../src/formatter');
+const { Parser, Formatter } = require('../index');
 
 const formatter = (file) => new Formatter(new Parser(file).parse());
 

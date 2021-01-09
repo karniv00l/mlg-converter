@@ -155,5 +155,5 @@ console.dir(result, { maxArrayLength: 1 }); // =>
 
 ```bash
 npm install
-npm test
+npm start
 ```
