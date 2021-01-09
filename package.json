@@ -25,7 +25,7 @@
   "main": "./mlgconv.js",
   "files": [
     "index.js",
-    "src/*.js"
+    "dist/*.js"
   ],
   "scripts": {
     "start": "tsc --watch",
