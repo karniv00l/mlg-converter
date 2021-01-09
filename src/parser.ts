@@ -1,7 +1,26 @@
-/* eslint-disable no-control-regex */
+import {
+  BlockType,
+  LoggerFieldDisplayStyle,
+  LoggerFieldType,
+  NumberType,
+  RawResult,
+  Result,
+} from './types'; // TODO: eslint
 
-class Parser {
-  constructor(buffer) {
+export class Parser {
+  FORMAT_LENGTH: number;
+  LOGGER_FIELD_LENGTH: number;
+  FIELD_NAME_LENGTH: number;
+  FIELD_UNITS_LENGTH: number;
+  MARKER_MESSAGE_LENGTH: number;
+
+  buffer: Buffer;
+  bufferLength: any;
+  dataView: DataView;
+  offset: number;
+  result: RawResult;
+
+  constructor(buffer: Buffer) {
     this.FORMAT_LENGTH = 6;
     this.LOGGER_FIELD_LENGTH = 55;
     this.FIELD_NAME_LENGTH = 34;
@@ -15,18 +34,30 @@ class Parser {
       buffer.byteOffset,
       buffer.length,
     );
-    this.result = {};
     this.offset = 0;
+    this.result = {
+      fileFormat: '',
+      formatVersion: 0,
+      timestamp: new Date(),
+      infoDataStart: 0,
+      dataBeginIndex: 0,
+      recordLength: 0,
+      numLoggerFields: 0,
+      loggerFields: [],
+      bitFieldNames: '',
+      infoData: '',
+      dataBlocks: [],
+    };
   }
 
-  parseRaw() {
+  public parseRaw(): RawResult {
     this.parseHeader();
     this.parseDataBlocks();
 
     return this.result;
   }
 
-  parse() {
+  public parse(): Result {
     this.parseRaw();
 
     return {
@@ -36,28 +67,28 @@ class Parser {
       info: this.result.infoData,
       fields: this.result.loggerFields.map((field) => ({
         name: field.name,
-        units: field.units === '' ? null : field.units,
+        units: field.units,
         displayStyle: Parser.chooseDisplayStyle(field.displayStyle),
         scale: field.scale,
         transform: field.transform,
         digits: field.digits,
       })),
       records: this.result.dataBlocks.map((block) => {
-        const temp = { ...block };
+        const temp: any = { ...block };
 
         delete temp.blockType;
         delete temp.crc;
 
         return {
-          type: Parser.chooseBlockTpe(block.blockType),
+          type: Parser.chooseBlockType(block.blockType),
           ...temp,
         };
       }),
     };
   }
 
-  static chooseNumberType(fieldType) {
-    return {
+  private static chooseNumberType(fieldType: LoggerFieldType) {
+    const types: { [type: number]: [NumberType, number] } = {
       // Logger Field – scalar
       0: ['uint', 8], // U08
       1: ['int', 8], // S08
@@ -72,11 +103,13 @@ class Parser {
       10: ['uint', 8], // U08_BITFIELD
       11: ['uint', 16], // U16_BITFIELD
       12: ['uint', 32], // U32_BITFIELD
-    }[fieldType];
+    };
+
+    return types[fieldType];
   }
 
-  static chooseDisplayStyle(style) {
-    return {
+  private static chooseDisplayStyle(style: number) {
+    const styles: { [style: number]: LoggerFieldDisplayStyle } = {
       0: 'Float',
       1: 'Hex',
       2: 'bits',
@@ -85,17 +118,21 @@ class Parser {
       5: 'Yes/No',
       6: 'High/Low',
       7: 'Active/Inactive',
-    }[style];
+    };
+
+    return styles[style];
   }
 
-  static chooseBlockTpe(type) {
-    return {
+  private static chooseBlockType(type: number) {
+    const types: { [type: number]: BlockType } = {
       0: 'field',
       1: 'marker',
-    }[type];
+    };
+
+    return types[type];
   }
 
-  static clearString(val, stripQuotation) {
+  private static clearString(val: string, stripQuotation = false) {
     let result = val.replace(/\x00/gu, '');
 
     if (stripQuotation === true) {
@@ -105,20 +142,22 @@ class Parser {
     return result.trim();
   }
 
-  static parseDate(timestamp) {
+  private static parseDate(timestamp: number) {
     return new Date(timestamp * 1000);
   }
 
-  number(type, size) {
-    const result = this.dataView[
-      `get${type.charAt(0).toUpperCase()}${type.slice(1)}${size}`
-    ](this.offset);
+  private number(type: NumberType, size: number) {
+    const functionName = `get${type.charAt(0).toUpperCase()}${type.slice(1)}${size}`;
+
+    // dynamically call DataView function like: this.dataView.getInt8(8);
+    const result = (this.dataView as any)[functionName](this.offset);
+
     this.offset += size / 8;
 
     return result;
   }
 
-  string(length) {
+  private string(length: number) {
     const result = new TextDecoder('utf8').decode(
       this.buffer.subarray(this.offset, this.offset + length),
     );
@@ -127,11 +166,11 @@ class Parser {
     return result;
   }
 
-  jump(to) {
+  jump(to: number) {
     this.offset = to;
   }
 
-  validateFormat() {
+  private validateFormat() {
     if (this.result.fileFormat !== 'MLVLG' || this.result.formatVersion !== 1) {
       throw new Error(
         `Format (${this.result.fileFormat}) with version (${this.result.formatVersion}) not supported.`,
@@ -139,7 +178,7 @@ class Parser {
     }
   }
 
-  parseHeader() {
+  private parseHeader() {
     this.result.fileFormat = Parser.clearString(
       this.string(this.FORMAT_LENGTH),
       true,
@@ -180,12 +219,12 @@ class Parser {
     );
   }
 
-  parseDataBlocks() {
+  private parseDataBlocks() {
     this.jump(this.result.dataBeginIndex);
 
     this.result.dataBlocks = [];
     while (this.offset < this.bufferLength) {
-      const data = {};
+      const data: { [fieldName: string]: number | string } = {};
       const blockType = this.number('int', 8);
       const header = {
         blockType,
@@ -222,5 +261,3 @@ class Parser {
     }
   }
 }
-
-module.exports = Parser;
