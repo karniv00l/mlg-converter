@@ -157,3 +157,9 @@ console.dir(result, { maxArrayLength: 1 }); // =>
 npm install
 npm start
 ```
+
+Building binaries
+
+```bash
+pkg mlgconv.js --out-path ./build
+```
