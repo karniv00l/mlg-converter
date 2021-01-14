@@ -5,7 +5,7 @@ import {
   NumberType,
   RawResult,
   Result,
-} from './types'; // TODO: eslint
+} from './types';
 
 export class Parser {
   FORMAT_LENGTH: number;
