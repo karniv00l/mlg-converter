@@ -1,7 +1,7 @@
 # Binary MLG (MLVLG) log files converter
 
 ![npm](https://img.shields.io/npm/v/mlg-converter)
-[![buddy pipeline](https://app.buddy.works/qikio/mlg-converter/pipelines/pipeline/300742/badge.svg?token=1e8e92037033a0164df2af9937643930bfd09a5fb47c744e90b21be190804156 "buddy pipeline")](https://app.buddy.works/qikio/mlg-converter/pipelines/pipeline/300742)
+[![buddy branch](https://app.buddy.works/karniv00l/mlg-converter/repository/branch/master/badge.svg?token=cac765c7349c286a2a645de64d211d46bd8e45569ecf85eaf4dff2c87ba4cc47 "buddy branch")](https://app.buddy.works/karniv00l/mlg-converter/repository/branch/master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b778eac2cf95b273680b/maintainability)](https://codeclimate.com/github/karniv00l/mlg-converter/maintainability)
 [![Minimum Node.js Version](https://img.shields.io/badge/node-%3E%3D%2011.0.0-brightgreen)](https://nodejs.org/)
 ![License](https://img.shields.io/github/license/karniv00l/mlg-converter)
