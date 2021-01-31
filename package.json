@@ -1,6 +1,6 @@
 {
   "name": "mlg-converter",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "description": "MLG log files converter",
   "author": "Piotr Rogowski <piotr.rogowski0@gmail.com>",
@@ -29,8 +29,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "install": "npm run build",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "start": "tsc --watch",
     "lint": "eslint .",
     "test": "node test/test.js"
