@@ -1,6 +1,6 @@
 {
   "name": "mlg-converter",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "description": "MLG log files converter",
   "author": "Piotr Rogowski <piotr.rogowski0@gmail.com>",
@@ -25,7 +25,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/*.js"
+    "dist"
   ],
   "scripts": {
     "build": "tsc",
