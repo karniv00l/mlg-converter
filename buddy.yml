@@ -14,6 +14,7 @@
     execute_commands:
     - "# yarn install"
     - "npm install"
+    - "npm run build"
     - "npm run lint"
     - "npm test"
     volume_mappings:
@@ -36,6 +37,7 @@
     execute_commands:
     - "# yarn install"
     - "npm install"
+    - "npm run build"
     - "npm run lint"
     - "npm test"
     volume_mappings:
