@@ -2,8 +2,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const assert = require('assert');
-const { Parser, Formatter } = require('../index');
+const assert = require('assert').strict;
+const { Parser, Formatter } = require('../dist');
 
 const formatter = (file) => new Formatter(new Parser(file).parse());
 

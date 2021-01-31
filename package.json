@@ -22,14 +22,15 @@
     "cli",
     "json"
   ],
-  "main": "./mlgconv.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "index.js",
     "dist/*.js"
   ],
   "scripts": {
-    "start": "tsc --watch",
     "build": "tsc",
+    "prepublish": "npm run build",
+    "start": "tsc --watch",
     "lint": "eslint .",
     "test": "node test/test.js"
   },

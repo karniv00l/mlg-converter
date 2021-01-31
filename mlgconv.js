@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { Parser, Formatter } = require('./index');
+const { Parser, Formatter } = require('./dist');
 
 const args = process.argv.slice(2);
 
