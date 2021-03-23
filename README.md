@@ -3,7 +3,7 @@
 ![npm](https://img.shields.io/npm/v/mlg-converter)
 [![buddy pipeline](https://app.buddy.works/karniv00l/mlg-converter/pipelines/pipeline/303171/badge.svg?token=cac765c7349c286a2a645de64d211d46bd8e45569ecf85eaf4dff2c87ba4cc47 "buddy pipeline")](https://app.buddy.works/karniv00l/mlg-converter/pipelines/pipeline/303171)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b778eac2cf95b273680b/maintainability)](https://codeclimate.com/github/karniv00l/mlg-converter/maintainability)
-[![Minimum Node.js Version](https://img.shields.io/badge/node-%3E%3D%2011.0.0-brightgreen)](https://nodejs.org/)
+[![Minimum Node.js Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-brightgreen)](https://nodejs.org/)
 ![License](https://img.shields.io/github/license/karniv00l/mlg-converter)
 
 Simple tool for parsing and converting `EFI Analytics (TunerStudio, MegaLogViewer)` binary log files (`.mlg`) to a human readable formats like:
