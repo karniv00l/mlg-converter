@@ -20,7 +20,7 @@ export class Parser {
   offset: number;
   result: RawResult;
 
-  constructor(buffer: ArrayBuffer, byteOffset = 0) {
+  constructor(buffer: ArrayBuffer) {
     this.FORMAT_LENGTH = 6;
     this.LOGGER_FIELD_LENGTH = 55;
     this.FIELD_NAME_LENGTH = 34;
@@ -29,7 +29,7 @@ export class Parser {
 
     this.buffer = buffer;
     this.bufferLength = buffer.byteLength;
-    this.dataView = new DataView(buffer, byteOffset, this.bufferLength);
+    this.dataView = new DataView(buffer, undefined, this.bufferLength);
     this.offset = 0;
     this.result = {
       fileFormat: '',
