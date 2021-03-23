@@ -50,7 +50,9 @@ npm install --save mlg-converter
 const fs = require('fs');
 const { Parser } = require('mlg-converter');
 
-const result = new Parser(fs.readFileSync('./test/data/short.mlg')).parse();
+const b = fs.readFileSync('./test/data/short.mlg');
+const arrayBuffer = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
+const result = new Parser(arrayBuffer).parse();
 
 console.dir(result, { maxArrayLength: 1 }); // =>
 

@@ -14,13 +14,13 @@ export class Parser {
   FIELD_UNITS_LENGTH: number;
   MARKER_MESSAGE_LENGTH: number;
 
-  buffer: Buffer;
+  buffer: ArrayBuffer;
   bufferLength: any;
   dataView: DataView;
   offset: number;
   result: RawResult;
 
-  constructor(buffer: Buffer) {
+  constructor(buffer: ArrayBuffer, byteOffset = 0) {
     this.FORMAT_LENGTH = 6;
     this.LOGGER_FIELD_LENGTH = 55;
     this.FIELD_NAME_LENGTH = 34;
@@ -28,12 +28,8 @@ export class Parser {
     this.MARKER_MESSAGE_LENGTH = 50;
 
     this.buffer = buffer;
-    this.bufferLength = buffer.length;
-    this.dataView = new DataView(
-      buffer.buffer,
-      buffer.byteOffset,
-      buffer.length,
-    );
+    this.bufferLength = buffer.byteLength;
+    this.dataView = new DataView(buffer, byteOffset, this.bufferLength);
     this.offset = 0;
     this.result = {
       fileFormat: '',
@@ -159,7 +155,7 @@ export class Parser {
 
   private string(length: number) {
     const result = new TextDecoder('utf8').decode(
-      this.buffer.subarray(this.offset, this.offset + length),
+      this.buffer.slice(this.offset, this.offset + length),
     );
     this.offset += length;
 

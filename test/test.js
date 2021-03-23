@@ -20,9 +20,13 @@ const testFiles = [
   'data/markers',
 ];
 
+const toArrayBuffer = (b) => {
+  return b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
+};
+
 testFiles.forEach((file) => (
   assertEquals(
-    fs.readFileSync(path.join(__dirname, `${file}.mlg`)),
+    toArrayBuffer(fs.readFileSync(path.join(__dirname, `${file}.mlg`))),
     fs.readFileSync(path.join(__dirname, `${file}.json`)),
   )
 ));

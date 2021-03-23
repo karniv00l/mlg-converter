@@ -35,10 +35,11 @@ const parseArgs = () => {
   }
 
   args.slice(1).forEach((file) => {
-    const buffer = fs.readFileSync(file);
+    const b = fs.readFileSync(file);
+    const arrayBuffer = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
 
     formats.forEach((format) => {
-      const formatter = new Formatter(new Parser(buffer).parse());
+      const formatter = new Formatter(new Parser(arrayBuffer).parse());
       const outputFile = file.replace(path.extname(file), `.${format}`);
 
       fs.writeFileSync(outputFile, formatter[`to${format.toUpperCase()}`]());

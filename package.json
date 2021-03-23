@@ -34,7 +34,6 @@
     "lint": "eslint .",
     "test": "node test/test.js"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^14.14.22",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
