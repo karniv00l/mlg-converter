@@ -82,6 +82,8 @@ interface Result {
   records: Record[],
 }
 
+type onProgress = (current: number, total: number) => void;
+
 export type {
   NumberType,
   LoggerFieldType,
@@ -93,4 +95,5 @@ export type {
   Field,
   Record,
   Result,
+  onProgress,
 };

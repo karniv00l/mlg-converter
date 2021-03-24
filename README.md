@@ -52,7 +52,8 @@ const { Parser } = require('mlg-converter');
 
 const b = fs.readFileSync('./test/data/short.mlg');
 const arrayBuffer = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
-const result = new Parser(arrayBuffer).parse();
+const result = new Parser(arrayBuffer)
+  .parse((current, total) => console.log(current / total * 100));
 
 console.dir(result, { maxArrayLength: 1 }); // =>
 

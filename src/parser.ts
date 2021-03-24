@@ -5,6 +5,7 @@ import {
   NumberType,
   RawResult,
   Result,
+  onProgress,
 } from './types';
 
 export class Parser {
@@ -19,6 +20,7 @@ export class Parser {
   dataView: DataView;
   offset: number;
   result: RawResult;
+  onProgress?: onProgress;
 
   constructor(buffer: ArrayBuffer) {
     this.FORMAT_LENGTH = 6;
@@ -46,14 +48,10 @@ export class Parser {
     };
   }
 
-  public parseRaw(): RawResult {
-    this.parseHeader();
-    this.parseDataBlocks();
-
-    return this.result;
-  }
-
-  public parse(): Result {
+  public parse(onProgress?: onProgress): Result {
+    if (onProgress) {
+      this.onProgress = onProgress;
+    }
     this.parseRaw();
 
     return {
@@ -81,6 +79,13 @@ export class Parser {
         };
       }),
     };
+  }
+
+  public parseRaw(): RawResult {
+    this.parseHeader();
+    this.parseDataBlocks();
+
+    return this.result;
   }
 
   private static chooseNumberType(fieldType: LoggerFieldType) {
@@ -147,8 +152,7 @@ export class Parser {
 
     // dynamically call DataView function like: this.dataView.getInt8(8);
     const result = (this.dataView as any)[functionName](this.offset);
-
-    this.offset += size / 8;
+    this.advance(size / 8);
 
     return result;
   }
@@ -157,13 +161,23 @@ export class Parser {
     const result = new TextDecoder('utf8').decode(
       this.buffer.slice(this.offset, this.offset + length),
     );
-    this.offset += length;
+    this.advance(length);
 
     return result;
   }
 
-  jump(to: number) {
+  private advance(length: number) {
+    this.offset += length;
+  }
+
+  private jump(to: number) {
     this.offset = to;
+  }
+
+  private reportProgress() {
+    if (this.onProgress) {
+      this.onProgress(this.offset, this.bufferLength);
+    }
   }
 
   private validateFormat() {
@@ -227,6 +241,8 @@ export class Parser {
         counter: this.number('int', 8),
         timestamp: this.number('uint', 16),
       };
+
+      this.reportProgress();
 
       switch (blockType) {
         case 0:
