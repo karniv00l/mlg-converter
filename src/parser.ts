@@ -19,6 +19,7 @@ export class Parser {
   bufferLength: any;
   dataView: DataView;
   offset: number;
+  progress: number;
   result: RawResult;
   onProgress?: onProgress;
 
@@ -33,6 +34,7 @@ export class Parser {
     this.bufferLength = buffer.byteLength;
     this.dataView = new DataView(buffer, undefined, this.bufferLength);
     this.offset = 0;
+    this.progress = 0;
     this.result = {
       fileFormat: '',
       formatVersion: 0,
@@ -59,6 +61,7 @@ export class Parser {
       formatVersion: this.result.formatVersion,
       timestamp: this.result.timestamp,
       info: this.result.infoData,
+      bitFieldNames: this.result.bitFieldNames,
       fields: this.result.loggerFields.map((field) => ({
         name: field.name,
         units: field.units,
@@ -175,8 +178,14 @@ export class Parser {
   }
 
   private reportProgress() {
-    if (this.onProgress) {
-      this.onProgress(this.offset, this.bufferLength);
+    if (!this.onProgress) {
+      return;
+    }
+
+    const percent = Math.ceil(this.offset / this.bufferLength * 100);
+    if (this.progress !== percent) {
+      this.progress = percent;
+      this.onProgress(percent);
     }
   }
 
@@ -218,7 +227,7 @@ export class Parser {
     }
 
     this.result.bitFieldNames = this.string(
-      this.result.infoDataStart - loggerFieldsLength - 1,
+      this.result.infoDataStart - loggerFieldsLength,
     );
 
     this.jump(this.result.infoDataStart);
@@ -263,7 +272,6 @@ export class Parser {
           data.message = Parser.clearString(this.string(this.MARKER_MESSAGE_LENGTH));
           this.result.dataBlocks.push({
             ...header,
-            ...data,
           });
           break;
 

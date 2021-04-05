@@ -78,11 +78,12 @@ interface Result {
   formatVersion: number,
   timestamp: Date,
   info: string,
+  bitFieldNames: string,
   fields: Field[]
   records: Record[],
 }
 
-type onProgress = (current: number, total: number) => void;
+type onProgress = (percent: number) => void;
 
 export type {
   NumberType,
