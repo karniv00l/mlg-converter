@@ -53,7 +53,7 @@ const { Parser } = require('mlg-converter');
 const b = fs.readFileSync('./test/data/short.mlg');
 const arrayBuffer = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
 const result = new Parser(arrayBuffer)
-  .parse((current, total) => console.log(current / total * 100));
+  .parse((percent) => console.log(percent));
 
 console.dir(result, { maxArrayLength: 1 }); // =>
 
@@ -63,6 +63,7 @@ console.dir(result, { maxArrayLength: 1 }); // =>
   timestamp: 2020-12-28T12:30:43.000Z,
   info: 'speeduino 202009-dev: Speeduino 2020.09-dev\n' +
     'Capture Date: Mon Dec 28 13:30:43 CET 2020',
+  bitFieldNames: "",
   fields: [
     {
       name: 'Time',
