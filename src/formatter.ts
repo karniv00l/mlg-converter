@@ -79,7 +79,7 @@ export class Formatter {
       }
 
       if (record.type === this.RECORD_TYPE_MARKER) {
-        this.pushRow([record.message], separator);
+        this.pushRow([record.message as string], separator);
 
         return;
       }

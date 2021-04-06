@@ -22,13 +22,13 @@ interface LoggerField {
   type: LoggerFieldType,
   name: string,
   units: string,
-  displayStyle: number,
+  displayStyle: LoggerFieldDisplayStyle,
 }
 
 interface LoggerFieldScalar extends LoggerField {
- scale: number,
- transform: number,
- digits: number,
+  scale: number,
+  transform: number,
+  digits: number,
 }
 
 // type LoggerBitFieldStyle = 'Float' | 'Hex' | 'bits' | 'On/Off' | 'Yes/No' | 'High/Low' | 'Active/Inactive';
@@ -39,11 +39,14 @@ interface LoggerFieldScalar extends LoggerField {
 // }
 
 interface DataBlock {
-  blockType: number,
-  counter: number,
+  [name: string]: string | number | undefined,
+  type: BlockType,
   timestamp: number,
   message?: string, // marker block only
-  crc?: number, // not present in marker block
+}
+
+interface Record extends DataBlock {
+  [name: string]: string | number | undefined,
 }
 
 interface RawResult {
@@ -67,10 +70,6 @@ interface Field {
   scale: number,
   transform: number,
   digits: number,
-}
-
-interface Record {
-  [name: string]: string | number,
 }
 
 interface Result {

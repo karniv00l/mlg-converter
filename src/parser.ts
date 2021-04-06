@@ -55,6 +55,7 @@ export class Parser {
       this.onProgress = onProgress;
     }
     this.parseRaw();
+    this.reportProgress();
 
     return {
       fileFormat: this.result.fileFormat,
@@ -65,22 +66,12 @@ export class Parser {
       fields: this.result.loggerFields.map((field) => ({
         name: field.name,
         units: field.units,
-        displayStyle: Parser.chooseDisplayStyle(field.displayStyle),
+        displayStyle: field.displayStyle,
         scale: field.scale,
         transform: field.transform,
         digits: field.digits,
       })),
-      records: this.result.dataBlocks.map((block) => {
-        const temp: any = { ...block };
-
-        delete temp.blockType;
-        delete temp.crc;
-
-        return {
-          type: Parser.chooseBlockType(block.blockType),
-          ...temp,
-        };
-      }),
+      records: this.result.dataBlocks,
     };
   }
 
@@ -182,7 +173,7 @@ export class Parser {
       return;
     }
 
-    const percent = Math.ceil(this.offset / this.bufferLength * 100);
+    const percent = ~~(this.offset / this.bufferLength * 100);
     if (this.progress !== percent) {
       this.progress = percent;
       this.onProgress(percent);
@@ -219,7 +210,7 @@ export class Parser {
         type: this.number('int', 8),
         name: Parser.clearString(this.string(this.FIELD_NAME_LENGTH)),
         units: Parser.clearString(this.string(this.FIELD_UNITS_LENGTH)),
-        displayStyle: this.number('int', 8),
+        displayStyle: Parser.chooseDisplayStyle(this.number('int', 8)),
         scale: this.number('float', 32),
         transform: this.number('float', 32),
         digits: this.number('int', 8),
@@ -245,9 +236,11 @@ export class Parser {
     while (this.offset < this.bufferLength) {
       const data: { [fieldName: string]: number | string } = {};
       const blockType = this.number('int', 8);
+      // skip counter parsing
+      // counter: this.number('uint', 8),
+      this.advance(1);
       const header = {
-        blockType,
-        counter: this.number('int', 8),
+        type: Parser.chooseBlockType(blockType),
         timestamp: this.number('uint', 16),
       };
 
@@ -261,10 +254,13 @@ export class Parser {
             );
           });
 
+          // skip crc parsing
+          // crc: this.number('uint', 8),
+          this.advance(1);
+
           this.result.dataBlocks.push({
             ...header,
             ...data,
-            crc: this.number('uint', 8),
           });
           break;
 

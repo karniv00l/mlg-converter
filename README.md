@@ -78,7 +78,6 @@ console.dir(result, { maxArrayLength: 1 }); // =>
   records: [
     {
       type: 'field',
-      counter: 3,
       timestamp: 15081,
       Time: 0,
       SecL: 8,
