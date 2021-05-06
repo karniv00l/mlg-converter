@@ -31,13 +31,13 @@
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "start": "tsc --watch",
-    "lint": "eslint .",
+    "lint": "tsc && eslint --max-warnings=0 .",
     "test": "node test/test.js"
   },
   "devDependencies": {
-    "@types/node": "^15.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.1",
-    "@typescript-eslint/parser": "^4.14.1",
+    "@types/node": "^15.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
     "eslint": "^7.23.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
