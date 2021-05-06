@@ -6,6 +6,7 @@ const path = require('path');
 const { Parser, Formatter } = require('./dist');
 
 const args = process.argv.slice(2);
+const unused = 0;
 
 const showUsage = () => {
   console.info('Usage:\n');
