@@ -9,6 +9,7 @@ export class Formatter {
   FIELD_DISPLAY_STYLE_FLOAT: string;
   input: Result;
   rows: string[];
+  test: string;
 
   constructor(input: Result) {
     this.CSV_SEPARATOR = ';';
