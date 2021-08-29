@@ -16,7 +16,7 @@ Or just can be used as a Node library producing JS `plain object`.
 ## Caveats
 
 - `MLVLG` also carries data type called `Marker`s (graphical marks used for indicating specific events). They **will be stripped** in `.csv` files.
-- Provided binaries are pretty heavy (~70MB), so you are better off using Node.js if it's available (**minimum** Node version: `11.x`).
+- Provided binaries are pretty heavy (~70MB), so you are better off using Node.js if it's available (**minimum** Node version: `14.x`).
 
 ## Using provided binaries (Linux, MacOS, Windows)
 
