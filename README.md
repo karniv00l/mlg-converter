@@ -4,6 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b778eac2cf95b273680b/maintainability)](https://codeclimate.com/github/karniv00l/mlg-converter/maintainability)
 [![Minimum Node.js Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-brightgreen)](https://nodejs.org/)
 ![License](https://img.shields.io/github/license/karniv00l/mlg-converter)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkarniv00l%2Fmlg-converter.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkarniv00l%2Fmlg-converter?ref=badge_shield)
 
 Simple tool for parsing and converting `EFI Analytics (TunerStudio, MegaLogViewer)` binary log files (`.mlg`) to a human readable formats like:
 
@@ -166,3 +167,7 @@ Building binaries
 ```bash
 pkg mlgconv.js --out-path ./build
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkarniv00l%2Fmlg-converter.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkarniv00l%2Fmlg-converter?ref=badge_large)
