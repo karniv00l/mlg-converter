@@ -3,6 +3,10 @@
 
 name: Lint code
 
+concurrency:
+  group: ${{ github.ref }}-lint
+  cancel-in-progress: true
+
 on:
   push:
     branches: [ master ]
