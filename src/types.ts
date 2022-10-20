@@ -82,7 +82,7 @@ interface Result {
   records: Record[],
 }
 
-type onProgress = (percent: number) => void;
+type OnProgress = (percent: number) => void;
 
 export type {
   NumberType,
@@ -95,5 +95,5 @@ export type {
   Field,
   Record,
   Result,
-  onProgress,
+  OnProgress,
 };
