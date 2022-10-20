@@ -8,6 +8,13 @@ import {
   OnProgress,
 } from './types';
 
+export class FormatError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'FormatError';
+  }
+}
+
 export class Parser {
   FORMAT_LENGTH: number;
   LOGGER_FIELD_LENGTH: number;
@@ -183,7 +190,7 @@ export class Parser {
 
   private validateFormat() {
     if (this.result.fileFormat !== 'MLVLG' || this.result.formatVersion !== 1) {
-      throw new Error(
+      throw new FormatError(
         `Format (${this.result.fileFormat}) with version (${this.result.formatVersion}) not supported.`,
       );
     }
