@@ -5,7 +5,7 @@ import {
   NumberType,
   RawResult,
   Result,
-  onProgress,
+  OnProgress,
 } from './types';
 
 export class Parser {
@@ -21,7 +21,7 @@ export class Parser {
   offset: number;
   progress: number;
   result: RawResult;
-  onProgress?: onProgress;
+  onProgress?: OnProgress;
 
   constructor(buffer: ArrayBuffer) {
     this.FORMAT_LENGTH = 6;
@@ -50,7 +50,7 @@ export class Parser {
     };
   }
 
-  public parse(onProgress?: onProgress): Result {
+  public parse(onProgress?: OnProgress): Result {
     if (onProgress) {
       this.onProgress = onProgress;
     }
@@ -128,6 +128,7 @@ export class Parser {
   }
 
   private static clearString(val: string, stripQuotation = false) {
+    // eslint-disable-next-line no-control-regex
     let result = val.replace(/\x00/gu, '');
 
     if (stripQuotation === true) {
