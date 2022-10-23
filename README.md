@@ -19,25 +19,15 @@ Or just can be used as a Node library producing JS `plain object`.
 - `MLVLG` also carries data type called `Marker`s (graphical marks used for indicating specific events). They **will be stripped** in `.csv` files.
 - Provided binaries are pretty heavy (~70MB), so you are better off using Node.js if it's available (**minimum** Node version: `14.x`).
 
-## Using provided binaries (Linux, MacOS, Windows)
-
-Binaries can be found on the [releases page](https://github.com/karniv00l/mlg-converter/releases).
-
 ```bash
 # single file, multiple formats
-mlgconv --format=csv,msl,json log1.mlg
+npx mlg-converter --format=csv,msl,json log1.mlg
 
 # single format, multiple files
-mlgconv --format=msl log1.mlg log2.mlg log3.mlg
+npx mlg-converter --format=msl log1.mlg log2.mlg log3.mlg
 
 # using Node.js
-node mlgconv.js --format=csv,msl,json log1.mlg
-```
-
-## Using Docker 🐳
-
-```bash
-docker run --rm -v $(pwd):/app -w /app node:lts-alpine mlgconv.js --format=csv log1.mlg
+node npx mlg-converter.js --format=csv,msl,json log1.mlg
 ```
 
 ## Using parser as a `npm` package
@@ -162,12 +152,6 @@ npm run build
 npm test
 ```
 
-Building binaries
-
-```bash
-pkg mlgconv.js --out-path ./build
-```
-
-
 ## License
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkarniv00l%2Fmlg-converter.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkarniv00l%2Fmlg-converter?ref=badge_large)

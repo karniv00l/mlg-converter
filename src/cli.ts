@@ -1,9 +1,11 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable no-console */
+#!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const { Parser, Formatter } = require('./dist');
+import fs from 'fs';
+import path from 'path';
+import {
+  Parser,
+  Formatter,
+} from '.';
 
 const args = process.argv.slice(2);
 
@@ -14,7 +16,6 @@ const showUsage = () => {
 };
 
 const parseArgs = () => {
-  const start = new Date();
   const formatsArg = args[0];
 
   if (args.length < 2) {
@@ -42,12 +43,10 @@ const parseArgs = () => {
       const formatter = new Formatter(new Parser(arrayBuffer).parse());
       const outputFile = file.replace(path.extname(file), `.${format}`);
 
-      fs.writeFileSync(outputFile, formatter[`to${format.toUpperCase()}`]());
+      fs.writeFileSync(outputFile, (formatter as any)[`to${format.toUpperCase()}`]());
       console.info('Generated:', outputFile);
     });
   });
-
-  console.info('Done in: ', (new Date() - start) / 1000, '[s]');
 };
 
 parseArgs();
