@@ -47,6 +47,14 @@ export class Formatter {
     return this.joinRows();
   }
 
+  public static formats() {
+    return [
+      'csv',
+      'msl',
+      'json',
+    ];
+  }
+
   private joinRows() {
     return this.rows.join(this.LINE_SEPARATOR);
   }
@@ -99,13 +107,5 @@ export class Formatter {
 
   private static escape(value: number | string) {
     return `"${value}"`;
-  }
-
-  private static formats() {
-    return [
-      'csv',
-      'msl',
-      'json',
-    ];
   }
 }

@@ -24,12 +24,15 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "mlg-converter": "dist/cli.js"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
     "start": "tsc --watch",
     "lint": "tsc && eslint --max-warnings=0 .",
     "test": "node test/test.js"
