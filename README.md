@@ -17,7 +17,7 @@ Or just can be used as a Node library producing JS `plain object`.
 ## Caveats
 
 - `MLVLG` also carries data type called `Marker`s (graphical marks used for indicating specific events). They **will be stripped** in `.csv` files.
-- Provided binaries are pretty heavy (~70MB), so you are better off using Node.js if it's available (**minimum** Node version: `14.x`).
+- **minimum** Node version: `14.x`.
 
 ```bash
 # single file, multiple formats
@@ -25,9 +25,6 @@ npx mlg-converter --format=csv,msl,json log1.mlg
 
 # single format, multiple files
 npx mlg-converter --format=msl log1.mlg log2.mlg log3.mlg
-
-# using Node.js
-node npx mlg-converter.js --format=csv,msl,json log1.mlg
 ```
 
 ## Using parser as a `npm` package
