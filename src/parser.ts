@@ -152,11 +152,16 @@ export class Parser {
   private number(type: NumberType, size: number) {
     const functionName = `get${type.charAt(0).toUpperCase()}${type.slice(1)}${size}`;
 
-    // dynamically call DataView function like: this.dataView.getInt8(8);
-    const result = (this.dataView as any)[functionName](this.offset);
-    this.advance(size / 8);
+    try {
+      // dynamically call DataView function like: this.dataView.getInt8(8);
+      const result = (this.dataView as any)[functionName](this.offset);
+      this.advance(size / 8);
 
-    return result;
+      return result;
+    } catch (error) {
+      // out of range
+      return 0;
+    }
   }
 
   private string(length: number) {
