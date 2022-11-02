@@ -19,6 +19,7 @@ const testFiles = [
   'data/blank',
   'data/markers',
   'data/rusefi',
+  'data/broken',
 ];
 
 const toArrayBuffer = (b) => {

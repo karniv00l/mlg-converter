@@ -89,7 +89,7 @@ export class Parser {
     return this.result;
   }
 
-  private static chooseNumberType(fieldType: LoggerFieldType) {
+  private static chooseNumberType(fieldType: LoggerFieldType): [NumberType, number] {
     const types: { [type: number]: [NumberType, number] } = {
       // Logger Field – scalar
       0: ['uint', 8], // U08
@@ -106,6 +106,11 @@ export class Parser {
       11: ['uint', 16], // U16_BITFIELD
       12: ['uint', 32], // U32_BITFIELD
     };
+
+    // NOTE: this should not happen (see: data/broken.mlg)
+    if (!types[fieldType]) {
+      return ['uint', 8];
+    }
 
     return types[fieldType];
   }
