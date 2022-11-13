@@ -26,8 +26,8 @@ export class Formatter {
     return this.input;
   }
 
-  public toJSON(): string {
-    return JSON.stringify(this.input);
+  public toJSON(prettyPrint = false): string {
+    return JSON.stringify(this.input, null, prettyPrint ? 2 : 0);
   }
 
   public toCSV(): string {
@@ -93,8 +93,10 @@ export class Formatter {
       }
 
       this.input.fields.forEach((field) => {
-        const rawValue = record[field.name];
-        const value = ((rawValue as number) + field.transform) * field.scale;
+        const transform = field.transform || 0;
+        const scale = field.scale || 1;
+        const rawValue = record[field.name] || 0;
+        const value = ((rawValue as number) + transform) * scale;
         const withStyle = field.displayStyle === this.FIELD_DISPLAY_STYLE_FLOAT
           ? value.toFixed(field.digits) : `${value}`;
 

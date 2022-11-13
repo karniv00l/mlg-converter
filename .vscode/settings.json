@@ -1,6 +1,3 @@
-{
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "cSpell.words": [
-        "rusefi"
-    ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:3b96eb3d08f3c367b9cefa49a106af8f5db0e4aa7bca5e79f7d79d354343b14c
+size 103
