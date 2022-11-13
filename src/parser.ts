@@ -6,6 +6,8 @@ import {
   RawResult,
   Result,
   OnProgress,
+  LoggerFieldScalar,
+  LoggerBitFieldStyle,
 } from './types';
 
 export class FormatError extends Error {
@@ -15,15 +17,24 @@ export class FormatError extends Error {
   }
 }
 
+export enum Versions {
+  v1 = 1,
+  v2 = 2,
+}
+
 export class Parser {
-  FORMAT_LENGTH: number;
-  LOGGER_FIELD_LENGTH: number;
-  FIELD_NAME_LENGTH: number;
-  FIELD_UNITS_LENGTH: number;
-  MARKER_MESSAGE_LENGTH: number;
+  FORMAT_LENGTH = 6;
+  FIELD_NAME_LENGTH = 34;
+  FIELD_UNITS_LENGTH = 10;
+  FIELD_CATEGORY_LENGTH = 34;
+  FIELD_UNUSED_LENGTH = 3;
+  MARKER_MESSAGE_LENGTH = 50;
+
+  supportedVersions = [Versions.v1, Versions.v2];
 
   buffer: ArrayBuffer;
-  bufferLength: any;
+  bufferLength: number;
+  loggerFieldLength: number;
   dataView: DataView;
   offset: number;
   progress: number;
@@ -31,14 +42,9 @@ export class Parser {
   onProgress?: OnProgress;
 
   constructor(buffer: ArrayBuffer) {
-    this.FORMAT_LENGTH = 6;
-    this.LOGGER_FIELD_LENGTH = 55;
-    this.FIELD_NAME_LENGTH = 34;
-    this.FIELD_UNITS_LENGTH = 10;
-    this.MARKER_MESSAGE_LENGTH = 50;
-
     this.buffer = buffer;
     this.bufferLength = buffer.byteLength;
+    this.loggerFieldLength = 0;
     this.dataView = new DataView(buffer, undefined, this.bufferLength);
     this.offset = 0;
     this.progress = 0;
@@ -70,14 +76,26 @@ export class Parser {
       timestamp: this.result.timestamp,
       info: this.result.infoData,
       bitFieldNames: this.result.bitFieldNames,
-      fields: this.result.loggerFields.map((field) => ({
-        name: field.name,
-        units: field.units,
-        displayStyle: field.displayStyle,
-        scale: field.scale,
-        transform: field.transform,
-        digits: field.digits,
-      })),
+      fields: this.result.loggerFields.map((field) => {
+        if (field.type >= 10) {
+          return {
+            name: field.name,
+            units: field.units,
+            displayStyle: field.displayStyle,
+            category: '',
+          };
+        }
+
+        return {
+          name: field.name,
+          units: field.units,
+          displayStyle: field.displayStyle,
+          scale: (field as LoggerFieldScalar).scale,
+          transform: (field as LoggerFieldScalar).transform,
+          digits: (field as LoggerFieldScalar).digits,
+          category: (field as LoggerFieldScalar).category,
+        };
+      }),
       records: this.result.dataBlocks,
     };
   }
@@ -125,6 +143,22 @@ export class Parser {
       5: 'Yes/No',
       6: 'High/Low',
       7: 'Active/Inactive',
+      8: 'True/False',
+    };
+
+    return styles[style];
+  }
+
+  private static chooseBitFieldStyle(style: number) {
+    const styles: { [style: number]: LoggerBitFieldStyle } = {
+      0: 'Float',
+      1: 'Hex',
+      2: 'bits',
+      4: 'On/Off',
+      5: 'Yes/No',
+      6: 'High/Low',
+      7: 'Active/Inactive',
+      8: 'True/False',
     };
 
     return styles[style];
@@ -199,11 +233,21 @@ export class Parser {
   }
 
   private validateFormat() {
-    if (this.result.fileFormat !== 'MLVLG' || this.result.formatVersion !== 1) {
+    if (this.result.fileFormat !== 'MLVLG') {
       throw new FormatError(
-        `Format (${this.result.fileFormat}) with version (${this.result.formatVersion}) not supported.`,
+        `Format (${this.result.fileFormat}) not supported.`,
       );
     }
+
+    if (!this.supportedVersions.includes(this.result.formatVersion)) {
+      throw new FormatError(
+        `Version (${this.result.formatVersion}) not supported.`,
+      );
+    }
+  }
+
+  private isV2() {
+    return this.result.formatVersion === Versions.v2;
   }
 
   private parseHeader() {
@@ -213,26 +257,43 @@ export class Parser {
     );
     this.result.formatVersion = this.number('int', 16);
     this.validateFormat();
+    this.loggerFieldLength = this.isV2() ? 89 : 55;
     this.result.timestamp = Parser.parseDate(this.number('int', 32));
-    this.result.infoDataStart = this.number('int', 16);
+    this.result.infoDataStart = this.isV2() ? this.number('int', 32) : this.number('int', 16);
     this.result.dataBeginIndex = this.number('int', 32);
     this.result.recordLength = this.number('int', 16);
     this.result.numLoggerFields = this.number('int', 16);
     this.result.loggerFields = [];
 
     const loggerFieldsLength = this.offset
-      + (this.result.numLoggerFields * this.LOGGER_FIELD_LENGTH);
+      + (this.result.numLoggerFields * this.loggerFieldLength);
 
     while (this.offset < loggerFieldsLength) {
-      this.result.loggerFields.push({
+      const base = {
         type: this.number('int', 8),
         name: Parser.clearString(this.string(this.FIELD_NAME_LENGTH)),
         units: Parser.clearString(this.string(this.FIELD_UNITS_LENGTH)),
         displayStyle: Parser.chooseDisplayStyle(this.number('int', 8)),
-        scale: this.number('float', 32),
-        transform: this.number('float', 32),
-        digits: this.number('int', 8),
-      });
+      };
+
+      if (base.type < 10) {
+        this.result.loggerFields.push({
+          ...base,
+          scale: this.number('float', 32),
+          transform: this.number('float', 32),
+          digits: this.number('int', 8),
+          category: this.isV2() ? Parser.clearString(this.string(this.FIELD_CATEGORY_LENGTH)) : '',
+        });
+      } else {
+        this.result.loggerFields.push({
+          ...base,
+          bitFieldStyle: Parser.chooseBitFieldStyle(this.number('int', 8)),
+          bitFieldNamesIndex: this.number('int', 32),
+          bits: this.number('int', 8),
+          unused: this.string(this.FIELD_UNUSED_LENGTH),
+          category: this.isV2() ? Parser.clearString(this.string(this.FIELD_CATEGORY_LENGTH)) : '',
+        });
+      }
     }
 
     this.result.bitFieldNames = this.string(
@@ -290,7 +351,7 @@ export class Parser {
           break;
 
         default:
-          throw new Error('Unsupported Block Type');
+          throw new Error(`Unsupported Block Type (${blockType})`);
       }
     }
   }

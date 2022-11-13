@@ -43,7 +43,7 @@ const parseArgs = () => {
       const formatter = new Formatter(new Parser(arrayBuffer).parse());
       const outputFile = file.replace(path.extname(file), `.${format}`);
 
-      fs.writeFileSync(outputFile, (formatter as any)[`to${format.toUpperCase()}`]());
+      fs.writeFileSync(outputFile, (formatter as any)[`to${format.toUpperCase()}`](true));
       console.info('Generated:', outputFile);
     });
   });

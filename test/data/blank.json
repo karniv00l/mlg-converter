@@ -1,1 +1,649 @@
-{"fileFormat":"MLVLG","formatVersion":1,"timestamp":"2020-12-26T19:33:58.000Z","info":"speeduino 202009-dev\nCapture Date: Sat Dec 26 20:33:58 CET 2020","bitFieldNames":"","fields":[{"name":"Time","units":"s","displayStyle":"Float","scale":1,"transform":0,"digits":3},{"name":"SecL","units":"sec","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"RPM","units":"rpm","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"MAP","units":"kpa","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"MAPxRPM","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"TPS","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"AFR","units":"O2","displayStyle":"Float","scale":0.10000000149011612,"transform":0,"digits":3},{"name":"Lambda","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":3},{"name":"IAT","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"CLT","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Engine","units":"bits","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"DFCO","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Gego","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Gair","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Gbattery","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Gwarm","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Gbaro","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Gammae","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Accel Enrich","units":"%","displayStyle":"Float","scale":2,"transform":0,"digits":0},{"name":"Current VE","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"VE1","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"VE2","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"PW","units":"ms","displayStyle":"Float","scale":0.0010000000474974513,"transform":0,"digits":3},{"name":"AFR Target","units":"O2","displayStyle":"Float","scale":0.10000000149011612,"transform":0,"digits":3},{"name":"Lambda Target","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":3},{"name":"PW2","units":"ms","displayStyle":"Float","scale":0.0010000000474974513,"transform":0,"digits":3},{"name":"DutyCycle1","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":1},{"name":"DutyCycle2","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":1},{"name":"TPS DOT","units":"%/s","displayStyle":"Float","scale":10,"transform":0,"digits":0},{"name":"Advance","units":"deg","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Dwell","units":"ms","displayStyle":"Float","scale":0.0010000000474974513,"transform":0,"digits":1},{"name":"Battery V","units":"V","displayStyle":"Float","scale":0.10000000149011612,"transform":0,"digits":1},{"name":"rpm/s","units":"rpm/s","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Error #","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Error ID","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Boost PSI","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":1},{"name":"Boost Target","units":"kPa","displayStyle":"Float","scale":2,"transform":0,"digits":0},{"name":"Boost Duty","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Boost cut","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Hard Launch","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Hard Limiter","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Idle Control","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"IAC value","units":"Duty Cycle","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Idle Target RPM","units":"RPM","displayStyle":"Float","scale":10,"transform":0,"digits":0},{"name":"Idle RPM Delta","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Baro Pressure","units":"kpa","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Sync Loss #","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"VSS_RAW","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Clutch_RAW","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux2","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux3","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux4","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux5","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux6","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux7","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux8","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux9","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux10","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux11","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux12","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux13","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux14","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Aux15","units":"","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Advance 1","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Advance 2","units":"%","displayStyle":"Float","scale":1,"transform":0,"digits":0},{"name":"Trip Meter Miles","units":"Miles","displayStyle":"Float","scale":1,"transform":0,"digits":2},{"name":"Odometer Miles","units":"Miles","displayStyle":"Float","scale":1,"transform":0,"digits":2},{"name":"Vehicle Speed","units":"MPH","displayStyle":"Float","scale":1,"transform":0,"digits":2},{"name":"Power","units":"HP","displayStyle":"Float","scale":1,"transform":0,"digits":1},{"name":"Torque","units":"lbft","displayStyle":"Float","scale":1,"transform":0,"digits":1},{"name":"Odometer_Miles","units":"Miles","displayStyle":"Float","scale":1,"transform":0,"digits":1}],"records":[]}
+{
+  "fileFormat": "MLVLG",
+  "formatVersion": 1,
+  "timestamp": "2020-12-26T19:33:58.000Z",
+  "info": "speeduino 202009-dev\nCapture Date: Sat Dec 26 20:33:58 CET 2020",
+  "bitFieldNames": "",
+  "fields": [
+    {
+      "name": "Time",
+      "units": "s",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 3,
+      "category": ""
+    },
+    {
+      "name": "SecL",
+      "units": "sec",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "RPM",
+      "units": "rpm",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "MAP",
+      "units": "kpa",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "MAPxRPM",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "TPS",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "AFR",
+      "units": "O2",
+      "displayStyle": "Float",
+      "scale": 0.10000000149011612,
+      "transform": 0,
+      "digits": 3,
+      "category": ""
+    },
+    {
+      "name": "Lambda",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 3,
+      "category": ""
+    },
+    {
+      "name": "IAT",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "CLT",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Engine",
+      "units": "bits",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "DFCO",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Gego",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Gair",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Gbattery",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Gwarm",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Gbaro",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Gammae",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Accel Enrich",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 2,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Current VE",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "VE1",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "VE2",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "PW",
+      "units": "ms",
+      "displayStyle": "Float",
+      "scale": 0.0010000000474974513,
+      "transform": 0,
+      "digits": 3,
+      "category": ""
+    },
+    {
+      "name": "AFR Target",
+      "units": "O2",
+      "displayStyle": "Float",
+      "scale": 0.10000000149011612,
+      "transform": 0,
+      "digits": 3,
+      "category": ""
+    },
+    {
+      "name": "Lambda Target",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 3,
+      "category": ""
+    },
+    {
+      "name": "PW2",
+      "units": "ms",
+      "displayStyle": "Float",
+      "scale": 0.0010000000474974513,
+      "transform": 0,
+      "digits": 3,
+      "category": ""
+    },
+    {
+      "name": "DutyCycle1",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    },
+    {
+      "name": "DutyCycle2",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    },
+    {
+      "name": "TPS DOT",
+      "units": "%/s",
+      "displayStyle": "Float",
+      "scale": 10,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Advance",
+      "units": "deg",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Dwell",
+      "units": "ms",
+      "displayStyle": "Float",
+      "scale": 0.0010000000474974513,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    },
+    {
+      "name": "Battery V",
+      "units": "V",
+      "displayStyle": "Float",
+      "scale": 0.10000000149011612,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    },
+    {
+      "name": "rpm/s",
+      "units": "rpm/s",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Error #",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Error ID",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Boost PSI",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    },
+    {
+      "name": "Boost Target",
+      "units": "kPa",
+      "displayStyle": "Float",
+      "scale": 2,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Boost Duty",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Boost cut",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Hard Launch",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Hard Limiter",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Idle Control",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "IAC value",
+      "units": "Duty Cycle",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Idle Target RPM",
+      "units": "RPM",
+      "displayStyle": "Float",
+      "scale": 10,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Idle RPM Delta",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Baro Pressure",
+      "units": "kpa",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Sync Loss #",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "VSS_RAW",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Clutch_RAW",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux2",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux3",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux4",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux5",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux6",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux7",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux8",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux9",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux10",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux11",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux12",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux13",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux14",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Aux15",
+      "units": "",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Advance 1",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Advance 2",
+      "units": "%",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 0,
+      "category": ""
+    },
+    {
+      "name": "Trip Meter Miles",
+      "units": "Miles",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 2,
+      "category": ""
+    },
+    {
+      "name": "Odometer Miles",
+      "units": "Miles",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 2,
+      "category": ""
+    },
+    {
+      "name": "Vehicle Speed",
+      "units": "MPH",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 2,
+      "category": ""
+    },
+    {
+      "name": "Power",
+      "units": "HP",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    },
+    {
+      "name": "Torque",
+      "units": "lbft",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    },
+    {
+      "name": "Odometer_Miles",
+      "units": "Miles",
+      "displayStyle": "Float",
+      "scale": 1,
+      "transform": 0,
+      "digits": 1,
+      "category": ""
+    }
+  ],
+  "records": []
+}

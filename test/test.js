@@ -9,8 +9,8 @@ const formatter = (file) => new Formatter(new Parser(file).parse());
 
 const assertEquals = (actual, expected) => (
   assert.deepStrictEqual(
-    JSON.parse(formatter(actual).toJSON()),
-    JSON.parse(expected.toString()),
+    formatter(actual).toJSON(true),
+    expected.toString(),
   )
 );
 
@@ -18,8 +18,9 @@ const testFiles = [
   'data/short',
   'data/blank',
   'data/markers',
-  'data/rusefi',
+  // 'data/rusefi', // TODO: find smaller file
   'data/broken',
+  'data/v2',
 ];
 
 const toArrayBuffer = (b) => {

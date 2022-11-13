@@ -16,7 +16,7 @@ enum LoggerFieldType {
 
 type BlockType = 'field' | 'marker';
 
-type LoggerFieldDisplayStyle = 'Float' | 'Hex' | 'bits' | 'Date' | 'On/Off' | 'Yes/No' | 'High/Low' | 'Active/Inactive';
+type LoggerFieldDisplayStyle = 'Float' | 'Hex' | 'bits' | 'Date' | 'On/Off' | 'Yes/No' | 'High/Low' | 'Active/Inactive' | 'True/False';
 
 interface LoggerField {
   type: LoggerFieldType,
@@ -29,14 +29,18 @@ interface LoggerFieldScalar extends LoggerField {
   scale: number,
   transform: number,
   digits: number,
+  category: string,
 }
 
-// type LoggerBitFieldStyle = 'Float' | 'Hex' | 'bits' | 'On/Off' | 'Yes/No' | 'High/Low' | 'Active/Inactive';
-// interface LoggerFieldBit extends LoggerField {
-//  LoggerbitFieldStyle: number,
-//  bitFieldNamesIndex: number,
-//  bits: number,
-// }
+type LoggerBitFieldStyle = 'Float' | 'Hex' | 'bits' | 'On/Off' | 'Yes/No' | 'High/Low' | 'Active/Inactive' | 'True/False';
+
+interface LoggerFieldBit extends LoggerField {
+  bitFieldStyle: LoggerBitFieldStyle,
+  bitFieldNamesIndex: number,
+  bits: number,
+  unused: string,
+  category: string,
+}
 
 interface DataBlock {
   [name: string]: string | number | undefined,
@@ -57,7 +61,7 @@ interface RawResult {
   dataBeginIndex: number,
   recordLength: number,
   numLoggerFields: number,
-  loggerFields: LoggerFieldScalar[], // | LoggerFieldBit[],
+  loggerFields: (LoggerFieldScalar | LoggerFieldBit)[],
   bitFieldNames: string,
   infoData: string,
   dataBlocks: DataBlock[],
@@ -66,10 +70,11 @@ interface RawResult {
 interface Field {
   name: string,
   units: string,
-  displayStyle: LoggerFieldDisplayStyle,
-  scale: number,
-  transform: number,
-  digits: number,
+  displayStyle: LoggerFieldDisplayStyle | LoggerBitFieldStyle,
+  scale?: number,
+  transform?: number,
+  digits?: number,
+  category: string,
 }
 
 interface Result {
@@ -90,6 +95,8 @@ export type {
   BlockType,
   LoggerFieldDisplayStyle,
   LoggerFieldScalar,
+  LoggerBitFieldStyle,
+  LoggerFieldBit,
   DataBlock,
   RawResult,
   Field,
